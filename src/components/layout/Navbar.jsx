@@ -1,18 +1,33 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
+import {
+  motion,
+  AnimatePresence,
+} from 'framer-motion';
 
 import {
   Menu,
   X,
 } from 'lucide-react';
 
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+
 import { NAV_LINKS } from '../../data/brand';
+
 import Button from '../ui/Button';
 
-const Navbar = ({ currentPage, navigate }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +42,22 @@ const Navbar = ({ currentPage, navigate }) => {
         handleScroll
       );
   }, []);
+
+  // ROUTE CHECK
+  const isActive = (path) => {
+    if (path === 'home') {
+      return location.pathname === '/';
+    }
+
+    return location.pathname === `/${path}`;
+  };
+
+  // ROUTE CONVERT
+  const getPath = (id) => {
+    return id === 'home'
+      ? '/'
+      : `/${id}`;
+  };
 
   return (
     <>
@@ -44,8 +75,8 @@ const Navbar = ({ currentPage, navigate }) => {
           <div className="flex items-center justify-between">
 
             {/* LOGO */}
-            <div
-              onClick={() => navigate('home')}
+            <Link
+              to="/"
               className="cursor-pointer shrink-0 pr-6"
             >
 
@@ -68,17 +99,17 @@ const Navbar = ({ currentPage, navigate }) => {
                 </span>
               </h1>
 
-            </div>
+            </Link>
 
             {/* DESKTOP NAV */}
             <div className="hidden lg:flex items-center gap-8">
 
               {NAV_LINKS.map((link) => (
-                <button
+                <Link
                   key={link.id}
-                  onClick={() => navigate(link.id)}
+                  to={getPath(link.id)}
                   className={`relative uppercase text-[13px] tracking-[2px] font-semibold transition-all duration-300 hover:text-orange-500 ${
-                    currentPage === link.id
+                    isActive(link.id)
                       ? 'text-orange-500'
                       : 'text-neutral-300'
                   }`}
@@ -86,14 +117,14 @@ const Navbar = ({ currentPage, navigate }) => {
 
                   {link.name}
 
-                  {currentPage === link.id && (
+                  {isActive(link.id) && (
                     <motion.div
                       layoutId="navbar-indicator"
                       className="absolute -bottom-2 left-0 w-full h-[2px] bg-orange-500 rounded-full"
                     />
                   )}
 
-                </button>
+                </Link>
               ))}
 
             </div>
@@ -103,7 +134,7 @@ const Navbar = ({ currentPage, navigate }) => {
 
               <Button
                 onClick={() =>
-                  navigate('contact')
+                  navigate('/contact')
                 }
                 className="
                   !rounded-2xl
@@ -150,6 +181,7 @@ const Navbar = ({ currentPage, navigate }) => {
           </div>
 
         </div>
+
       </nav>
 
       {/* MOBILE MENU */}
@@ -187,23 +219,20 @@ const Navbar = ({ currentPage, navigate }) => {
               <div className="flex flex-col gap-6">
 
                 {NAV_LINKS.map((link) => (
-                  <motion.button
+                  <Link
                     key={link.id}
-                    whileTap={{
-                      scale: 0.97,
-                    }}
-                    onClick={() => {
-                      navigate(link.id);
-                      setIsOpen(false);
-                    }}
+                    to={getPath(link.id)}
+                    onClick={() =>
+                      setIsOpen(false)
+                    }
                     className={`text-left text-[28px] font-black uppercase tracking-tight transition-all ${
-                      currentPage === link.id
+                      isActive(link.id)
                         ? 'text-orange-500'
                         : 'text-white'
                     }`}
                   >
                     {link.name}
-                  </motion.button>
+                  </Link>
                 ))}
 
               </div>
@@ -213,7 +242,8 @@ const Navbar = ({ currentPage, navigate }) => {
 
                 <Button
                   onClick={() => {
-                    navigate('contact');
+                    navigate('/contact');
+
                     setIsOpen(false);
                   }}
                   className="

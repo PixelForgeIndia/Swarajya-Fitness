@@ -95,7 +95,7 @@ const Navbar = () => {
                 Swarajya{' '}
 
                 <span className="text-orange-500 ml-1">
-                  Fitness
+                  Gym
                 </span>
               </h1>
 

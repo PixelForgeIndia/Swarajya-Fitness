@@ -1,5 +1,5 @@
 export const BRAND = {
-  name: "Swarajya Fitness",
+  name: "Swarajya Gym",
   tagline: "Forge Strength. Build Discipline.",
   phone: "919876543210",
   whatsapp: "919876543210",

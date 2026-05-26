@@ -146,7 +146,7 @@ const Home = ({ navigate }) => {
                 variant="outline"
                 onClick={() =>
                   window.open(
-                    `https://wa.me/919762674241?text=Hi%20Swarajya%20Fitness%20Club,%0A%0AI%20want%20to%20know%20more%20about%20your%20gym%20and%20membership%20plans.`,
+                    `https://wa.me/919762674241?text=Hi%20Swarajya%20Gym,%0A%0AI%20want%20to%20know%20more%20about%20your%20gym%20and%20membership%20plans.`,
                     '_blank'
                   )
                 }
@@ -320,7 +320,7 @@ const Home = ({ navigate }) => {
 
         {/* DESCRIPTION */}
         <p className="text-neutral-300 text-lg leading-relaxed mb-10 max-w-xl">
-          Swarajya Fitness Club provides a
+          Swarajya Gym Club provides a
           motivating atmosphere, modern
           equipment and expert guidance to
           help every member become stronger,

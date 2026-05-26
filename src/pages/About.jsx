@@ -54,7 +54,7 @@ const Trainers = () => {
 
         {/* HEADING */}
         <SectionHeading subtitle="Meet The Founder">
-          Swarajya&nbsp;&nbsp;&nbsp;Fitness&nbsp;&nbsp;&nbsp;Owner
+          Swarajya&nbsp;&nbsp;Gym&nbsp;&nbsp;Owner
         </SectionHeading>
 
         {/* MAIN GRID */}
@@ -81,7 +81,13 @@ const Trainers = () => {
               duration: 0.7,
             }}
             viewport={{ once: true }}
-            className="relative group"
+            className="
+              relative
+              group
+              max-w-[470px]
+              md:max-w-[560px]
+              mx-auto
+            "
           >
 
             {/* Glow */}
@@ -115,7 +121,8 @@ const Trainers = () => {
                 alt="Gym Owner"
                 className="
                   w-full
-                  h-auto
+                  h-[580px]
+                  md:h-[620px]
                   object-cover
                   object-top
                   transition-all
@@ -156,7 +163,7 @@ const Trainers = () => {
               >
 
                 <p className="text-orange-500 font-bold uppercase tracking-[3px] text-sm mb-2">
-                  Professional Fitness Coaching
+                  Professional Gym Coaching
                 </p>
 
                 <h3 className="text-white text-2xl font-black leading-tight">

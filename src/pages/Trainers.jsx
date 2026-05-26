@@ -87,7 +87,7 @@ const Trainers = () => {
             <h2 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
               Swarajya
               <br />
-              Fitness Coach
+              Gym Coach
             </h2>
 
             <p className="text-neutral-400 text-lg leading-relaxed mb-8">

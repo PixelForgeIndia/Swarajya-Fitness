@@ -15,7 +15,7 @@ const Footer = ({ navigate }) => {
     'https://www.google.com/maps/place/Swaraj+gym+Talegaon+Dabhade+R/data=!4m2!3m1!1s0x3bc2b1b8615ceb1d:0x51b194a239c29b45?sa=X&ved=1t:242&ictx=111';
 
   const whatsappLink =
-    'https://wa.me/919762674241?text=Hi%20Swarajya%20Fitness%20Club,%20I%20want%20to%20know%20about%20membership%20details.';
+    'https://wa.me/919762674241?text=Hi%20Swarajya%20Gym,%20I%20want%20to%20know%20about%20membership%20details.';
 
   const agencyLink =
     'https://pixelforgeindia.vercel.app';
@@ -205,7 +205,7 @@ const Footer = ({ navigate }) => {
               </span>{' '}
 
               <span className="text-orange-500">
-                Fitness
+                Gym
               </span>
 
             </h2>
@@ -465,7 +465,7 @@ const Footer = ({ navigate }) => {
             >
 
               <iframe
-                title="Swarajya Fitness Location"
+                title="Swarajya Gym Location"
                 src="https://www.google.com/maps?q=Swaraj+gym+Talegaon+Dabhade&output=embed"
                 width="100%"
                 height="120"
@@ -572,7 +572,7 @@ const Footer = ({ navigate }) => {
             "
           >
 
-            Designed & Developed by{' '}
+            Built by{' '}
 
             <a
               href={agencyLink}
@@ -580,13 +580,13 @@ const Footer = ({ navigate }) => {
               rel="noopener noreferrer"
               className="
                 font-medium
-                text-neutral-300
+                text-white
                 transition-all
                 duration-300
-                hover:text-cyan-300
+                hover:text-orange-400
                 hover:underline
                 hover:underline-offset-4
-                hover:decoration-cyan-400/60
+                hover:decoration-orange-400/60
               "
             >
 

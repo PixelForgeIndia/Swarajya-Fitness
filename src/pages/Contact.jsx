@@ -104,7 +104,7 @@ const Contact = () => {
             >
 
               <h3 className="text-3xl font-black text-white mb-4">
-                Swarajya Fitness Club
+                Swarajya Gym Club
               </h3>
 
               <p className="text-neutral-300 leading-relaxed text-lg">
@@ -202,7 +202,7 @@ const Contact = () => {
             >
 
               <iframe
-                title="Swarajya Fitness Club Location"
+                title="Swarajya Gym Club Location"
                 src="https://www.google.com/maps?q=Swaraj+gym+Talegaon+Dabhade&output=embed"
                 width="100%"
                 height="350"

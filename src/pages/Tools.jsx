@@ -301,7 +301,7 @@ const Tools = () => {
       <div className="container mx-auto px-4 md:px-6">
 
         <SectionHeading subtitle="Fitness Tools">
-          Gym Member Calculators
+          Body &nbsp; & &nbsp; Nutrition &nbsp; Calculators
         </SectionHeading>
 
         <div className="max-w-3xl mb-12">

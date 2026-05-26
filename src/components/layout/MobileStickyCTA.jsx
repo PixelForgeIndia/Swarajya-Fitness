@@ -17,7 +17,7 @@ const MobileStickyCTA = ({ navigate }) => {
   /* WHATSAPP */
   const handleWhatsApp = () => {
     const message =
-      'Hi Swarajya Fitness Club, I want to know about membership plans and gym timings.';
+      'Hi Swarajya Gym Club, I want to know about membership plans and gym timings.';
 
     const whatsappURL =
       `https://wa.me/919762674241?text=${encodeURIComponent(message)}`;
@@ -31,7 +31,7 @@ const MobileStickyCTA = ({ navigate }) => {
   /* GOOGLE MAPS */
   const handleDirections = () => {
     window.open(
-      'https://maps.google.com/?q=Swarajya+Fitness+Club+Talegaon+Dabhade',
+      'https://maps.google.com/?q=Swarajya+Gym+Talegaon+Dabhade',
       '_blank'
     );
   };

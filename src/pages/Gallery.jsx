@@ -215,7 +215,7 @@ const Gallery = () => {
 
         {/* HEADING */}
 
-        <SectionHeading subtitle="Inside Swarajya">
+        <SectionHeading subtitle="Inside Swarajya Gym">
           Our Training Ground
         </SectionHeading>
 

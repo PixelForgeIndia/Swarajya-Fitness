@@ -262,143 +262,182 @@ const Home = ({ navigate }) => {
 
       </section>
 
-      {/* WHY US */}
-      <section className="relative py-28 overflow-hidden">
+     {/* WHY CHOOSE US SECTION */}
+<section className="relative py-28 overflow-hidden">
 
-        {/* BACKGROUND */}
-        <div className="absolute inset-0">
+  {/* BACKGROUND */}
+  <div className="absolute inset-0">
 
-          <img
-            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2200&auto=format&fit=crop"
-            alt="Workout Background"
-            className="w-full h-full object-cover"
-          />
+    <img
+      src="/images/Background/1.png"
+      alt="Workout Background"
+      className="
+        w-full
+        h-full
+        object-cover
+        scale-105
+      "
+    />
 
-          <div className="absolute inset-0 bg-[#0f1319]/88" />
+    {/* DARK PREMIUM OVERLAY */}
+<div className="absolute inset-0 bg-gradient-to-br from-[#050505]/65 via-[#0b0b0b]/55 to-[#111827]/65" />
+    {/* ORANGE GLOW */}
+    <div className="absolute top-0 left-0 w-full h-full bg-orange-500/5" />
 
-        </div>
+  </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+  {/* BLUR CIRCLES */}
+  <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 blur-[120px] rounded-full" />
 
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+  <div className="absolute bottom-10 right-10 w-80 h-80 bg-orange-400/10 blur-[140px] rounded-full" />
 
-            {/* IMAGE */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="w-full lg:w-1/2"
+  <div className="container mx-auto px-6 relative z-10">
+
+    <div className="flex flex-col lg:flex-row items-center gap-16">
+
+     {/* EMPTY SPACE FOR BETTER LAYOUT */}
+<div className="hidden lg:block lg:w-1/2" />
+
+      {/* RIGHT CONTENT */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        className="w-full lg:w-1/2"
+      >
+
+        {/* SUBTITLE */}
+        <p className="text-orange-500 uppercase tracking-[0.3em] font-semibold mb-4">
+          Why Choose Us
+        </p>
+
+        {/* HEADING */}
+        <h2 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+          Train With
+          <span className="text-orange-500"> Discipline.</span>
+        </h2>
+
+        {/* DESCRIPTION */}
+        <p className="text-neutral-300 text-lg leading-relaxed mb-10 max-w-xl">
+          Swarajya Fitness Club provides a
+          motivating atmosphere, modern
+          equipment and expert guidance to
+          help every member become stronger,
+          healthier and more confident.
+        </p>
+
+        {/* FEATURES */}
+        <div className="space-y-6">
+
+          {[
+            {
+              title: 'Beginner Friendly Training',
+              desc:
+                'Our trainers guide every member personally from the very first day.',
+            },
+
+            {
+              title: 'Affordable Membership Plans',
+              desc:
+                'Flexible and honest pricing suitable for students and professionals.',
+            },
+
+            {
+              title: '20+ Years Experience',
+              desc:
+                'Helping people transform physically and mentally through disciplined fitness.',
+            },
+
+          ].map((item, i) => (
+
+            <div
+              key={i}
+              className="
+                group
+                bg-white/5
+                backdrop-blur-xl
+                rounded-3xl
+                p-6
+                border
+                border-white/10
+                hover:border-orange-500/40
+                hover:bg-white/10
+                transition-all
+                duration-500
+              "
             >
 
-              <img
-                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1800&auto=format&fit=crop"
-                alt="Workout"
-                className="
-                  rounded-[2rem]
-                  shadow-2xl
-                  hover:scale-[1.02]
-                  transition-all
-                  duration-700
-                  border
-                  border-white/10
-                  w-full
-                  h-[500px]
-                  object-cover
-                "
-              />
+              <div className="flex gap-5">
 
-            </motion.div>
+                {/* ICON */}
+                <div
+                  className="
+                    w-14
+                    h-14
+                    rounded-2xl
+                    bg-orange-500/15
+                    border
+                    border-orange-500/20
+                    flex
+                    items-center
+                    justify-center
+                    shrink-0
+                  "
+                >
 
-            {/* TEXT */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="w-full lg:w-1/2"
-            >
+                  <CheckCircle2 className="w-7 h-7 text-orange-500" />
 
-              <SectionHeading subtitle="Why Choose Us">
-                Train With Discipline.
-              </SectionHeading>
+                </div>
 
-              <div className="space-y-6 mt-8">
+                {/* TEXT */}
+                <div>
 
-                {[
-                  {
-                    title: 'Beginner Friendly Training',
-                    desc:
-                      'Our trainers guide every member personally from the first day.',
-                  },
+                  <h4 className="text-2xl font-bold text-white mb-2">
+                    {item.title}
+                  </h4>
 
-                  {
-                    title: 'Affordable Membership Plans',
-                    desc:
-                      'Simple and honest pricing suitable for students and working professionals.',
-                  },
+                  <p className="text-neutral-400 leading-relaxed">
+                    {item.desc}
+                  </p>
 
-                  {
-                    title: 'Experienced Owners & Trainers',
-                    desc:
-                      '20 years of fitness experience helping people become stronger and healthier.',
-                  },
-
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="
-                      bg-[#171c24]/90
-                      backdrop-blur-md
-                      rounded-2xl
-                      p-6
-                      border
-                      border-white/5
-                      flex
-                      gap-5
-                      hover:border-orange-500/30
-                      hover:bg-[#1b212b]
-                      transition-all
-                      duration-500
-                    "
-                  >
-
-                    <div className="mt-1">
-                      <CheckCircle2 className="w-6 h-6 text-orange-500" />
-                    </div>
-
-                    <div>
-
-                      <h4 className="text-xl font-bold text-white mb-2">
-                        {item.title}
-                      </h4>
-
-                      <p className="text-neutral-400 leading-relaxed">
-                        {item.desc}
-                      </p>
-
-                    </div>
-
-                  </div>
-                ))}
+                </div>
 
               </div>
 
-              <Button
-                onClick={() => navigate('about')}
-                variant="outline"
-                className="mt-10 border-white/20 text-white hover:bg-white/10"
-              >
-                Know More
-              </Button>
-
-            </motion.div>
-
-          </div>
+            </div>
+          ))}
 
         </div>
 
-      </section>
+        {/* BUTTON */}
+        <Button
+          onClick={() => navigate('about')}
+          className="
+            mt-10
+            bg-orange-500
+            hover:bg-orange-600
+            text-white
+            px-8
+            py-6
+            rounded-2xl
+            text-lg
+            font-semibold
+            shadow-[0_0_35px_rgba(249,115,22,0.35)]
+            transition-all
+            duration-500
+          "
+        >
+          Know More
+        </Button>
+
+      </motion.div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* MEMBERSHIP */}
       <section className="relative py-28 bg-[#11161d] overflow-hidden">

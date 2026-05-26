@@ -91,10 +91,17 @@ const Contact = () => {
           <div className="space-y-8">
 
             {/* INTRO */}
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#111]
-            border border-white/10
-            rounded-3xl
-            p-8">
+            <div
+              className="
+                bg-gradient-to-br
+                from-[#1a1a1a]
+                to-[#111]
+                border
+                border-white/10
+                rounded-3xl
+                p-8
+              "
+            >
 
               <h3 className="text-3xl font-black text-white mb-4">
                 Swarajya Fitness Club
@@ -138,27 +145,41 @@ const Contact = () => {
                     y: -5,
                     scale: 1.01,
                   }}
-                  className="bg-[#181818]
-                  border border-white/10
-                  rounded-2xl
-                  p-6
-                  flex items-start gap-5
-                  hover:border-orange-500/40
-                  transition-all duration-500"
+                  className="
+                    bg-[#181818]
+                    border
+                    border-white/10
+                    rounded-2xl
+                    p-6
+                    flex
+                    items-start
+                    gap-5
+                    hover:border-orange-500/40
+                    transition-all
+                    duration-500
+                  "
                 >
 
                   <div className="bg-orange-500/10 p-4 rounded-2xl text-orange-500">
+
                     <Icon className="w-7 h-7" />
+
                   </div>
 
                   <div>
+
                     <h4 className="text-white text-xl font-bold mb-1">
+
                       {title}
+
                     </h4>
 
                     <p className="text-neutral-400 leading-relaxed">
+
                       {value}
+
                     </p>
+
                   </div>
 
                 </motion.div>
@@ -166,79 +187,83 @@ const Contact = () => {
 
             </div>
 
-            {/* MAP */}
+            {/* MAP - SAME OLD POSITION */}
+
             <motion.div
               whileHover={{
                 scale: 1.01,
               }}
-              className="overflow-hidden rounded-3xl border border-white/10"
+              className="
+                overflow-hidden
+                rounded-3xl
+                border
+                border-white/10
+              "
             >
 
               <iframe
-                title="Gym Location"
-                src="https://maps.google.com/maps?q=Talegaon%20Dabhade&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-[350px]"
+                title="Swarajya Fitness Club Location"
+                src="https://www.google.com/maps?q=Swaraj+gym+Talegaon+Dabhade&output=embed"
+                width="100%"
+                height="350"
                 loading="lazy"
+                className="border-0"
               />
+
+              <div className="p-5 bg-[#181818]">
+
+                <Button
+                  onClick={() =>
+                    window.open(
+                      'https://www.google.com/maps/place/Swaraj+gym+Talegaon+Dabhade+R/data=!4m2!3m1!1s0x3bc2b1b8615ceb1d:0x51b194a239c29b45?sa=X&ved=1t:242&ictx=111',
+                      '_blank'
+                    )
+                  }
+                  className="
+                    w-full
+                    !rounded-2xl
+                    !py-3
+                  "
+                >
+
+                  <div className="flex items-center justify-center gap-2">
+
+                    <Navigation className="w-5 h-5" />
+
+                    <span>
+                      Open In Google Maps
+                    </span>
+
+                  </div>
+
+                </Button>
+
+              </div>
 
             </motion.div>
 
-            {/* MAP BUTTON */}
-            <Button
-              className="w-full"
-              onClick={() =>
-                window.open(
-                  'https://share.google/SSMJskH3N7Zmh3szs',
-                  '_blank'
-                )
-              }
-            >
-
-              <Navigation className="mr-2 w-5 h-5" />
-
-              Open in Google Maps
-
-            </Button>
-
           </div>
 
-          {/* RIGHT SIDE FORM */}
-          <motion.div
-            whileHover={{
-              y: -5,
-            }}
-            className="bg-gradient-to-br
-            from-[#1b1b1b]
-            via-[#161616]
-            to-[#111]
-            border border-white/10
-            rounded-[2rem]
-            p-8 md:p-10
-            shadow-[0_0_60px_rgba(249,115,22,0.08)]"
-          >
+          {/* RIGHT SIDE */}
 
-            <div className="mb-8">
+          <div>
 
-              <h3 className="text-3xl font-black text-white mb-3">
-                Send Enquiry
-              </h3>
-
-              <p className="text-neutral-400">
-                Fill out the form below and the gym owner
-                will contact you soon.
-              </p>
-
-            </div>
-
+            {/* FORM */}
             <form
               onSubmit={handleSubmit}
-              className="space-y-6"
+              className="
+                bg-[#181818]
+                border
+                border-white/10
+                rounded-3xl
+                p-8
+                space-y-5
+              "
             >
 
-              {/* NAME */}
               <div>
 
-                <label className="block text-sm font-medium text-neutral-300 mb-2">
+                <label className="text-white font-medium block mb-2">
                   Full Name
                 </label>
 
@@ -246,117 +271,109 @@ const Contact = () => {
                   type="text"
                   name="name"
                   required
-                  placeholder="Enter your full name"
-                  className="w-full
-                  bg-[#101010]
-                  border border-white/10
-                  rounded-xl
-                  px-5 py-4
-                  text-white
-                  placeholder:text-neutral-500
-                  focus:outline-none
-                  focus:border-orange-500
-                  transition-all duration-300"
+                  placeholder="Enter your name"
+                  className="
+                    w-full
+                    bg-[#111]
+                    border
+                    border-white/10
+                    rounded-2xl
+                    px-5
+                    py-4
+                    text-white
+                    outline-none
+                    focus:border-orange-500
+                  "
                 />
 
               </div>
 
-              {/* PHONE */}
               <div>
 
-                <label className="block text-sm font-medium text-neutral-300 mb-2">
-                  Phone / WhatsApp Number
+                <label className="text-white font-medium block mb-2">
+                  Phone Number
                 </label>
 
                 <input
                   type="tel"
                   name="phone"
                   required
-                  placeholder="+91 XXXXX XXXXX"
-                  className="w-full
-                  bg-[#101010]
-                  border border-white/10
-                  rounded-xl
-                  px-5 py-4
-                  text-white
-                  placeholder:text-neutral-500
-                  focus:outline-none
-                  focus:border-orange-500
-                  transition-all duration-300"
+                  placeholder="Enter phone number"
+                  className="
+                    w-full
+                    bg-[#111]
+                    border
+                    border-white/10
+                    rounded-2xl
+                    px-5
+                    py-4
+                    text-white
+                    outline-none
+                    focus:border-orange-500
+                  "
                 />
 
               </div>
 
-              {/* GOAL */}
               <div>
 
-                <label className="block text-sm font-medium text-neutral-300 mb-2">
-                  Fitness Goal / Message
+                <label className="text-white font-medium block mb-2">
+                  Message
                 </label>
 
                 <textarea
                   name="message"
-                  required
                   rows="5"
-                  placeholder="I want to join the gym and know about membership plans..."
-                  className="w-full
-                  bg-[#101010]
-                  border border-white/10
-                  rounded-xl
-                  px-5 py-4
-                  text-white
-                  placeholder:text-neutral-500
-                  focus:outline-none
-                  focus:border-orange-500
-                  transition-all duration-300"
+                  required
+                  placeholder="Write your message..."
+                  className="
+                    w-full
+                    bg-[#111]
+                    border
+                    border-white/10
+                    rounded-2xl
+                    px-5
+                    py-4
+                    text-white
+                    outline-none
+                    resize-none
+                    focus:border-orange-500
+                  "
                 />
 
               </div>
 
-              {/* BUTTON */}
               <Button
                 type="submit"
-                className="w-full !py-4 text-lg"
                 disabled={formStatus === 'loading'}
+                className="
+                  w-full
+                  !rounded-2xl
+                  !py-4
+                "
               >
 
-                {formStatus === 'loading'
-                  ? 'Sending Enquiry...'
-                  : formStatus === 'success'
-                  ? 'Enquiry Sent Successfully ✓'
-                  : 'Send Enquiry'}
+                <div className="flex items-center justify-center gap-2">
 
-                {formStatus === 'idle' && (
-                  <Send className="ml-2 w-5 h-5" />
-                )}
+                  <Send className="w-5 h-5" />
+
+                  <span>
+
+                    {formStatus === 'loading'
+                      ? 'Sending...'
+                      : formStatus === 'success'
+                      ? 'Message Sent Successfully'
+                      : 'Send Message'}
+
+                  </span>
+
+                </div>
 
               </Button>
 
             </form>
 
-            {/* WHATSAPP DIRECT */}
-            <div className="mt-8 pt-8 border-t border-white/10">
-
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() =>
-                  window.open(
-                    'https://wa.me/919762674241?text=Hi%20Swarajya%20Fitness%20Club,%20I%20want%20to%20know%20more%20about%20membership%20plans.',
-                    '_blank'
-                  )
-                }
-              >
-
-                <PhoneCall className="mr-2 w-5 h-5 text-green-500" />
-
-                Chat on WhatsApp
-
-              </Button>
-
-            </div>
-
-          </motion.div>
+          </div>
 
         </div>
 

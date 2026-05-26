@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import {
   Dumbbell,
-  Flame,
-  Users,
   HeartPulse,
+  Activity,
+  Shield,
+  Trophy,
+  Bike,
 } from 'lucide-react';
 
 import { fadeUp } from '../utils/animations';
@@ -18,9 +20,19 @@ const categories = [
     icon: Dumbbell,
   },
   {
-    id: 'machines',
-    label: 'Machines',
-    icon: Dumbbell,
+    id: 'strength',
+    label: 'Strength',
+    icon: Trophy,
+  },
+  {
+    id: 'upper-body',
+    label: 'Upper Body',
+    icon: Activity,
+  },
+  {
+    id: 'lower-body',
+    label: 'Lower Body',
+    icon: Shield,
   },
   {
     id: 'cardio',
@@ -28,80 +40,160 @@ const categories = [
     icon: HeartPulse,
   },
   {
-    id: 'workout',
-    label: 'Workout',
-    icon: Flame,
+    id: 'free-weights',
+    label: 'Free Weights',
+    icon: Dumbbell,
   },
   {
-    id: 'members',
-    label: 'Members',
-    icon: Users,
+    id: 'functional',
+    label: 'Functional',
+    icon: Bike,
   },
 ];
 
 const galleryImages = [
+
+  // UPPER BODY
+
   {
-    image:
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop',
-    category: 'machines',
-    title: 'Strength Zone',
+    image: '/images/GYM/machines/1.jpeg',
+    category: 'upper-body',
+    title: 'Back Machine',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop',
-    category: 'workout',
-    title: 'Heavy Training',
+    image: '/images/GYM/machines/2.jpeg',
+    category: 'upper-body',
+    title: 'Cable Pull Down',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop',
+    image: '/images/GYM/machines/6.jpeg',
+    category: 'upper-body',
+    title: 'Shoulder Machine',
+  },
+  {
+    image: '/images/GYM/machines/8.jpeg',
+    category: 'upper-body',
+    title: 'Bicep Curl',
+  },
+  {
+    image: '/images/GYM/machines/9.jpeg',
+    category: 'upper-body',
+    title: 'Chest Press',
+  },
+  {
+    image: '/images/GYM/machines/11.jpeg',
+    category: 'upper-body',
+    title: 'Upper Body Machine',
+  },
+
+  // LOWER BODY
+
+  {
+    image: '/images/GYM/machines/3.jpeg',
+    category: 'lower-body',
+    title: 'Hamstring Machine',
+  },
+  {
+    image: '/images/GYM/machines/4.jpeg',
+    category: 'lower-body',
+    title: 'Leg Extension',
+  },
+  {
+    image: '/images/GYM/machines/15.jpeg',
+    category: 'lower-body',
+    title: 'Leg Press',
+  },
+  {
+    image: '/images/GYM/machines/10.jpeg',
+    category: 'lower-body',
+    title: 'Free Squats',
+  },
+
+  // STRENGTH
+
+  {
+    image: '/images/GYM/machines/5.jpeg',
+    category: 'strength',
+    title: 'Gym Equipment',
+  },
+  {
+    image: '/images/GYM/machines/7.jpeg',
+    category: 'strength',
+    title: 'Workout Setup',
+  },
+  {
+    image: '/images/GYM/machines/12.jpeg',
+    category: 'strength',
+    title: 'Modern Gym',
+  },
+  {
+    image: '/images/GYM/machines/13.jpeg',
+    category: 'strength',
+    title: 'Professional Equipment',
+  },
+  {
+    image: '/images/GYM/machines/14.jpeg',
+    category: 'strength',
+    title: 'Soft Machines',
+  },
+  {
+    image: '/images/GYM/machines/16.jpeg',
+    category: 'strength',
+    title: 'Inclined Press',
+  },
+
+  // CARDIO
+
+  {
+    image: '/images/GYM/cardio/1.jpeg',
     category: 'cardio',
-    title: 'Cardio Section',
+    title: 'Cardio Zone',
+  },
+
+  // FREE WEIGHTS
+
+  {
+    image: '/images/GYM/dumbells and plates/1.jpeg',
+    category: 'free-weights',
+    title: 'Dumbbell Training',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop',
-    category: 'members',
-    title: 'Fitness Community',
+    image: '/images/GYM/dumbells and plates/2.jpeg',
+    category: 'free-weights',
+    title: 'Rods And Plates',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop',
-    category: 'machines',
-    title: 'Machine Workout',
+    image: '/images/GYM/dumbells and plates/3.jpeg',
+    category: 'free-weights',
+    title: 'Strength Dumbbells',
   },
+
+  // FUNCTIONAL
+
   {
-    image:
-      'https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=1200&auto=format&fit=crop',
-    category: 'workout',
-    title: 'Power Training',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1200&auto=format&fit=crop',
-    category: 'cardio',
-    title: 'Treadmill Area',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop',
-    category: 'members',
-    title: 'Group Workout',
+    image: '/images/GYM/machines/7.jpeg',
+    category: 'functional',
+    title: 'Functional Training',
   },
 ];
 
 const Gallery = () => {
+
   const [activeCategory, setActiveCategory] =
     useState('all');
 
-  const filteredImages =
-    activeCategory === 'all'
-      ? galleryImages
-      : galleryImages.filter(
-          (img) =>
-            img.category ===
-            activeCategory
-        );
+  const filteredImages = useMemo(() => {
+
+    if (activeCategory === 'all') {
+      return galleryImages;
+    }
+
+    return galleryImages.filter(
+      (img) =>
+        img.category === activeCategory
+    );
+
+  }, [activeCategory]);
 
   return (
     <motion.div
@@ -109,8 +201,10 @@ const Gallery = () => {
       animate="visible"
       variants={fadeUp}
       className="
-        pt-32
-        pb-24
+        pt-24
+        md:pt-32
+        pb-20
+        md:pb-24
         min-h-screen
         bg-[#0b0b0b]
         overflow-hidden
@@ -120,25 +214,37 @@ const Gallery = () => {
       <div className="container mx-auto px-4 md:px-6">
 
         {/* HEADING */}
+
         <SectionHeading subtitle="Inside Swarajya">
           Our Training Ground
         </SectionHeading>
 
-        {/* TOP TEXT */}
-        <div className="max-w-3xl mb-10">
+        {/* TEXT */}
 
-          <p className="text-neutral-400 leading-relaxed text-lg">
-            Explore the atmosphere, machines,
-            workouts and transformation energy
-            inside Swarajya Fitness Club.
+        <div className="max-w-3xl mb-8 md:mb-10">
+
+          <p className="text-neutral-400 leading-relaxed text-base md:text-lg">
+            Explore premium strength machines,
+            cardio setups, free weights and
+            professional training equipment
+            designed for every fitness level.
           </p>
 
         </div>
 
         {/* FILTERS */}
-        <div className="flex flex-wrap gap-3 mb-12">
+
+        <div className="
+          flex
+          gap-3
+          mb-10
+          overflow-x-auto
+          scrollbar-hide
+          pb-2
+        ">
 
           {categories.map((item) => {
+
             const Icon = item.icon;
 
             return (
@@ -151,12 +257,15 @@ const Gallery = () => {
                   flex
                   items-center
                   gap-2
-                  px-5
+                  px-4
+                  md:px-5
                   py-3
                   rounded-2xl
                   border
                   transition-all
                   duration-300
+                  whitespace-nowrap
+                  shrink-0
                   ${
                     activeCategory === item.id
                       ? 'bg-orange-500 border-orange-500 text-white'
@@ -179,30 +288,36 @@ const Gallery = () => {
 
       </div>
 
-      {/* FLOATING IMAGE STRIP */}
-      <div className="overflow-hidden mb-14">
+      {/* MOBILE SAFE FLOATING STRIP */}
+
+      <div className="overflow-hidden mb-10 md:mb-14">
 
         <motion.div
           animate={{
-            x: ['0%', '-50%'],
+            x: ['0%', '-40%'],
           }}
           transition={{
             repeat: Infinity,
-            duration: 40,
+            duration: 30,
             ease: 'linear',
           }}
-          className="flex gap-5 w-max"
+          className="flex gap-4 w-max"
         >
 
-          {[...galleryImages, ...galleryImages].map(
+          {[...galleryImages.slice(0, 8),
+            ...galleryImages.slice(0, 8)].map(
             (img, i) => (
+
               <div
                 key={i}
                 className="
                   relative
-                  w-[280px]
-                  h-[190px]
-                  rounded-3xl
+                  w-[220px]
+                  md:w-[280px]
+                  h-[150px]
+                  md:h-[190px]
+                  rounded-2xl
+                  md:rounded-3xl
                   overflow-hidden
                   shrink-0
                   border
@@ -213,6 +328,7 @@ const Gallery = () => {
                 <img
                   src={img.image}
                   alt={img.title}
+                  loading="lazy"
                   className="
                     w-full
                     h-full
@@ -220,11 +336,29 @@ const Gallery = () => {
                   "
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/70
+                  via-black/10
+                  to-transparent
+                " />
 
-                <div className="absolute bottom-4 left-4">
+                <div className="
+                  absolute
+                  bottom-3
+                  left-3
+                  md:bottom-4
+                  md:left-4
+                ">
 
-                  <p className="text-white font-bold text-lg">
+                  <p className="
+                    text-white
+                    font-semibold
+                    text-sm
+                    md:text-lg
+                  ">
                     {img.title}
                   </p>
 
@@ -238,17 +372,26 @@ const Gallery = () => {
 
       </div>
 
-      {/* MAIN GRID */}
+      {/* GRID */}
+
       <div className="container mx-auto px-4 md:px-6">
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          gap-5
+          md:gap-6
+        ">
 
           {filteredImages.map((img, i) => (
+
             <motion.div
               key={i}
               initial={{
                 opacity: 0,
-                y: 30,
+                y: 20,
               }}
               animate={{
                 opacity: 1,
@@ -256,20 +399,25 @@ const Gallery = () => {
               }}
               transition={{
                 duration: 0.4,
-                delay: i * 0.05,
+                delay: i * 0.03,
               }}
               className="
                 group
                 relative
                 overflow-hidden
-                rounded-[28px]
+                rounded-[24px]
+                md:rounded-[28px]
                 border
                 border-white/10
                 bg-[#121212]
+                hover:shadow-[0_0_40px_rgba(249,115,22,0.20)]
+                transition-all
+                duration-500
               "
             >
 
               {/* IMAGE */}
+
               <div className="overflow-hidden">
 
                 <img
@@ -278,52 +426,60 @@ const Gallery = () => {
                   loading="lazy"
                   className="
                     w-full
-                    h-[260px]
+                    h-[240px]
+                    sm:h-[260px]
                     object-cover
                     transition-all
                     duration-700
-                    group-hover:scale-110
+                    group-hover:scale-105
+                    brightness-90
+                    group-hover:brightness-110
                   "
                 />
 
               </div>
 
               {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
+
+              <div className="
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-black/80
+                via-black/20
+                to-transparent
+                opacity-90
+              " />
 
               {/* CONTENT */}
-              <div className="absolute bottom-0 left-0 w-full p-5">
 
-                <div className="flex items-center justify-between gap-3">
+              <div className="
+                absolute
+                bottom-0
+                left-0
+                w-full
+                p-4
+                md:p-5
+              ">
 
-                  <div>
+                <p className="
+                  text-white
+                  text-lg
+                  md:text-xl
+                  font-bold
+                ">
+                  {img.title}
+                </p>
 
-                    <p className="text-white text-xl font-bold">
-                      {img.title}
-                    </p>
-
-                    <p className="text-orange-400 text-sm capitalize mt-1">
-                      {img.category}
-                    </p>
-
-                  </div>
-
-                  <div className="
-                    w-11
-                    h-11
-                    rounded-2xl
-                    bg-orange-500/20
-                    border
-                    border-orange-500/30
-                    flex
-                    items-center
-                    justify-center
-                    text-orange-500
-                  ">
-                    →
-                  </div>
-
-                </div>
+                <p className="
+                  text-orange-400
+                  text-xs
+                  md:text-sm
+                  capitalize
+                  mt-1
+                ">
+                  {img.category.replace('-', ' ')}
+                </p>
 
               </div>
 

@@ -1,20 +1,11 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import {
   Activity,
   Flame,
-  Droplets,
-  Dumbbell,
+ Target,
   ChevronDown,
-  Apple,
-  Target,
-  Sparkles,
-  HeartPulse,
-  Zap,
 } from 'lucide-react';
-
-import { fadeUp } from '../utils/animations';
 
 import SectionHeading from '../components/ui/SectionHeading';
 import Button from '../components/ui/Button';
@@ -23,49 +14,51 @@ const tools = [
   {
     id: 0,
     title: 'BMI Calculator',
-    subtitle: 'Check your body health instantly',
+    subtitle: 'Check your body mass index',
     icon: Activity,
     gradient: 'from-orange-500 to-red-500',
   },
   {
     id: 1,
-    title: 'Calories Calculator',
-    subtitle: 'Know your maintenance calories',
+    title: 'Maintenance Calories',
+    subtitle: 'Calories needed to maintain weight',
     icon: Flame,
     gradient: 'from-yellow-500 to-orange-500',
   },
   {
     id: 2,
-    title: 'Water Intake',
-    subtitle: 'Daily hydration recommendation',
-    icon: Droplets,
-    gradient: 'from-cyan-500 to-blue-500',
-  },
-  {
-    id: 3,
-    title: 'Protein Intake',
-    subtitle: 'Daily muscle recovery intake',
-    icon: Apple,
-    gradient: 'from-green-500 to-emerald-500',
-  },
-  {
-    id: 4,
-    title: 'Body Fat Estimator',
-    subtitle: 'Track transformation progress',
+    title: 'Goal Calories',
+    subtitle: 'Calories for fat loss or muscle gain',
     icon: Target,
     gradient: 'from-pink-500 to-purple-500',
-  },
-  {
-    id: 5,
-    title: 'Fitness Tips',
-    subtitle: 'Habits that build real physique',
-    icon: Dumbbell,
-    gradient: 'from-orange-500 to-yellow-500',
   },
 ];
 
 const inputStyle =
-  'w-full bg-[#111] border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-orange-500 transition-all duration-300 placeholder:text-neutral-500';
+  'w-full bg-[#111] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 placeholder:text-neutral-500';
+
+const activityLevels = [
+  {
+    label: 'Sedentary',
+    value: 1.2,
+  },
+  {
+    label: 'Light Activity',
+    value: 1.375,
+  },
+  {
+    label: 'Moderate Activity',
+    value: 1.55,
+  },
+  {
+    label: 'Very Active',
+    value: 1.725,
+  },
+  {
+    label: 'Athlete',
+    value: 1.9,
+  },
+];
 
 const ToolCard = ({
   open,
@@ -77,95 +70,73 @@ const ToolCard = ({
   children,
 }) => {
   return (
-    <motion.div
-      layout
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.3 }}
-      className="relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111111]/90 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.45)]"
-    >
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-[0.07]`}
-      />
+    <div className="rounded-2xl border border-white/10 bg-[#111] overflow-hidden">
 
       <button
         onClick={() => setOpen(!open)}
-        className="relative z-10 w-full p-6 md:p-8 flex items-center justify-between text-left"
+        className="w-full p-5 flex items-center justify-between text-left"
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
 
           <div
-            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg`}
+            className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shrink-0`}
           >
-            <Icon className="w-8 h-8 text-white" />
+            <Icon className="w-7 h-7 text-white" />
           </div>
 
           <div>
-            <h3 className="text-2xl md:text-3xl font-black text-white">
+            <h3 className="text-xl md:text-2xl font-bold text-white">
               {title}
             </h3>
 
-            <p className="text-neutral-400 mt-1">
+            <p className="text-neutral-400 text-sm mt-1">
               {subtitle}
             </p>
           </div>
+
         </div>
 
-        <motion.div
-          animate={{
-            rotate: open ? 180 : 0,
-          }}
-        >
-          <ChevronDown className="text-white w-7 h-7" />
-        </motion.div>
+        <ChevronDown
+          className={`text-white w-5 h-5 transition-transform duration-200 ${
+            open ? 'rotate-180' : ''
+          }`}
+        />
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              height: 0,
-            }}
-            animate={{
-              opacity: 1,
-              height: 'auto',
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{ duration: 0.4 }}
-            className="relative z-10 px-6 md:px-8 pb-8"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      {open && (
+        <div className="px-5 pb-5">
+          {children}
+        </div>
+      )}
+
+    </div>
   );
 };
 
-const ResultCard = ({ title, value, subtitle }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 15 }}
-    animate={{ opacity: 1, y: 0 }}
-    className="mt-7 rounded-3xl bg-gradient-to-br from-orange-500/15 to-orange-500/5 border border-orange-500/20 p-7 text-center"
-  >
-    <p className="text-neutral-400 uppercase tracking-[3px] text-xs mb-3">
+const ResultCard = ({
+  title,
+  value,
+  subtitle,
+}) => (
+  <div className="mt-6 rounded-2xl border border-orange-500/20 bg-orange-500/10 p-6 text-center">
+
+    <p className="text-neutral-400 uppercase tracking-[2px] text-xs mb-3">
       {title}
     </p>
 
-    <div className="text-6xl md:text-7xl font-black text-orange-500">
+    <div className="text-5xl md:text-6xl font-black text-orange-500">
       {value}
     </div>
 
-    <p className="text-white mt-3 text-lg">
+    <p className="text-white mt-3 text-sm md:text-base">
       {subtitle}
     </p>
-  </motion.div>
+
+  </div>
 );
 
 const Tools = () => {
+
   const [openTool, setOpenTool] = useState(0);
 
   /* BMI */
@@ -174,152 +145,201 @@ const Tools = () => {
   const [bmi, setBmi] = useState(null);
   const [status, setStatus] = useState('');
 
-  /* Calories */
-  const [calories, setCalories] = useState(null);
-  const [cWeight, setCWeight] = useState('');
-  const [cHeight, setCHeight] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('male');
+  /* Maintenance */
+  const [mWeight, setMWeight] = useState('');
+  const [mHeight, setMHeight] = useState('');
+  const [mAge, setMAge] = useState('');
+  const [mGender, setMGender] = useState('male');
+  const [mActivity, setMActivity] = useState('1.55');
+  const [maintenanceCalories, setMaintenanceCalories] =
+    useState(null);
 
-  /* Water */
-  const [waterWeight, setWaterWeight] = useState('');
-  const [water, setWater] = useState(null);
+  /* Goal */
+  const [gWeight, setGWeight] = useState('');
+  const [gHeight, setGHeight] = useState('');
+  const [gAge, setGAge] = useState('');
+  const [gGender, setGGender] = useState('male');
+  const [gActivity, setGActivity] = useState('1.55');
+  const [goal, setGoal] = useState('cut');
+  const [goalCalories, setGoalCalories] =
+    useState(null);
 
-  /* Protein */
-  const [proteinWeight, setProteinWeight] = useState('');
-  const [protein, setProtein] = useState(null);
+  /* Official Mifflin-St Jeor Formula */
+  const calculateBMR = (
+    weight,
+    height,
+    age,
+    gender
+  ) => {
 
-  /* Body Fat */
-  const [fatWeight, setFatWeight] = useState('');
-  const [fatHeight, setFatHeight] = useState('');
-  const [bodyFat, setBodyFat] = useState(null);
+    if (gender === 'male') {
+      return (
+        10 * weight +
+        6.25 * height -
+        5 * age +
+        5
+      );
+    }
 
+    return (
+      10 * weight +
+      6.25 * height -
+      5 * age -
+      161
+    );
+  };
+
+  /* BMI */
   const calculateBMI = (e) => {
     e.preventDefault();
 
-    const h = height / 100;
+    const w = parseFloat(weight);
+    const h = parseFloat(height) / 100;
 
-    const value = (
-      weight /
-      (h * h)
-    ).toFixed(1);
-
-    setBmi(value);
-
-    if (value < 18.5)
-      setStatus('Underweight');
-
-    else if (value < 25)
-      setStatus('Healthy');
-
-    else if (value < 30)
-      setStatus('Overweight');
-
-    else
-      setStatus('Obese');
-  };
-
-  const calculateCalories = (e) => {
-    e.preventDefault();
-
-    let bmr;
-
-    if (gender === 'male') {
-      bmr =
-        10 * cWeight +
-        6.25 * cHeight -
-        5 * age +
-        5;
-    } else {
-      bmr =
-        10 * cWeight +
-        6.25 * cHeight -
-        5 * age -
-        161;
+    if (!w || !h) {
+      return;
     }
 
-    setCalories(Math.round(bmr * 1.55));
+    const result =
+      w / (h * h);
+
+    const rounded =
+      result.toFixed(1);
+
+    setBmi(rounded);
+
+    if (result < 18.5) {
+      setStatus('Underweight');
+    } else if (result < 25) {
+      setStatus('Healthy Weight');
+    } else if (result < 30) {
+      setStatus('Overweight');
+    } else {
+      setStatus('Obese');
+    }
   };
 
-  const calculateWater = (e) => {
+  /* Maintenance Calories */
+  const calculateMaintenance = (
+    e
+  ) => {
     e.preventDefault();
 
-    setWater(
-      (waterWeight * 0.033).toFixed(1)
+    const w = parseFloat(mWeight);
+    const h = parseFloat(mHeight);
+    const a = parseFloat(mAge);
+    const activity =
+      parseFloat(mActivity);
+
+    if (!w || !h || !a) {
+      return;
+    }
+
+    const bmr =
+      calculateBMR(
+        w,
+        h,
+        a,
+        mGender
+      );
+
+    const calories =
+      bmr * activity;
+
+    setMaintenanceCalories(
+      Math.round(calories)
     );
   };
 
-  const calculateProtein = (e) => {
+  /* Goal Calories */
+  const calculateGoalCalories = (
+    e
+  ) => {
     e.preventDefault();
 
-    setProtein(
-      (proteinWeight * 1.6).toFixed(0)
+    const w = parseFloat(gWeight);
+    const h = parseFloat(gHeight);
+    const a = parseFloat(gAge);
+    const activity =
+      parseFloat(gActivity);
+
+    if (!w || !h || !a) {
+      return;
+    }
+
+    const bmr =
+      calculateBMR(
+        w,
+        h,
+        a,
+        gGender
+      );
+
+    const maintenance =
+      bmr * activity;
+
+    let target;
+
+    /* Clean direct results */
+
+    if (goal === 'cut') {
+      target =
+        maintenance - 500;
+    } else {
+      target =
+        maintenance + 250;
+    }
+
+    setGoalCalories(
+      Math.round(target)
     );
-  };
-
-  const calculateBodyFat = (e) => {
-    e.preventDefault();
-
-    const bmiCalc =
-      fatWeight /
-      ((fatHeight / 100) *
-        (fatHeight / 100));
-
-    const fat =
-      (
-        1.20 * bmiCalc +
-        0.23 * 25 -
-        16.2
-      ).toFixed(1);
-
-    setBodyFat(fat);
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={fadeUp}
-      className="relative overflow-hidden pt-28 pb-28 min-h-screen"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#090909]" />
+    <div className="bg-[#090909] min-h-screen pt-24 pb-24">
 
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-500/10 blur-[140px]" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/10 blur-[140px]" />
+      <div className="container mx-auto px-4 md:px-6">
 
-      <div className="relative z-10 container mx-auto px-4 md:px-6">
-
-        <SectionHeading subtitle="Premium Tools">
-          Fitness Intelligence Hub
+        <SectionHeading subtitle="Fitness Tools">
+          Gym Member Calculators
         </SectionHeading>
 
-        <div className="max-w-4xl mb-16">
-          <p className="text-neutral-300 text-lg md:text-xl leading-relaxed">
-            More than a gym website. These smart fitness tools help members track progress, calculate goals, improve recovery and stay consistent in their transformation journey.
+        <div className="max-w-3xl mb-12">
+          <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
+            Accurate fitness calculators based on
+            official fitness equations used by
+            coaches and nutrition professionals.
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
 
           {/* BMI */}
           <ToolCard
             open={openTool === 0}
             setOpen={() =>
-              setOpenTool(openTool === 0 ? null : 0)
+              setOpenTool(
+                openTool === 0
+                  ? null
+                  : 0
+              )
             }
             {...tools[0]}
           >
+
             <form
               onSubmit={calculateBMI}
-              className="space-y-5"
+              className="space-y-4"
             >
+
               <input
                 type="number"
-                placeholder="Enter Weight (kg)"
+                placeholder="Weight (kg)"
                 value={weight}
                 onChange={(e) =>
-                  setWeight(e.target.value)
+                  setWeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
@@ -327,10 +347,12 @@ const Tools = () => {
 
               <input
                 type="number"
-                placeholder="Enter Height (cm)"
+                placeholder="Height (cm)"
                 value={height}
                 onChange={(e) =>
-                  setHeight(e.target.value)
+                  setHeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
@@ -342,35 +364,47 @@ const Tools = () => {
               >
                 Calculate BMI
               </Button>
+
             </form>
 
             {bmi && (
               <ResultCard
-                title="Your BMI"
+                title="BMI"
                 value={bmi}
                 subtitle={status}
               />
             )}
+
           </ToolCard>
 
-          {/* Calories */}
+          {/* Maintenance Calories */}
           <ToolCard
             open={openTool === 1}
             setOpen={() =>
-              setOpenTool(openTool === 1 ? null : 1)
+              setOpenTool(
+                openTool === 1
+                  ? null
+                  : 1
+              )
             }
             {...tools[1]}
           >
+
             <form
-              onSubmit={calculateCalories}
-              className="space-y-5"
+              onSubmit={
+                calculateMaintenance
+              }
+              className="space-y-4"
             >
+
               <input
                 type="number"
                 placeholder="Weight (kg)"
-                value={cWeight}
+                value={mWeight}
                 onChange={(e) =>
-                  setCWeight(e.target.value)
+                  setMWeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
@@ -379,9 +413,11 @@ const Tools = () => {
               <input
                 type="number"
                 placeholder="Height (cm)"
-                value={cHeight}
+                value={mHeight}
                 onChange={(e) =>
-                  setCHeight(e.target.value)
+                  setMHeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
@@ -390,18 +426,22 @@ const Tools = () => {
               <input
                 type="number"
                 placeholder="Age"
-                value={age}
+                value={mAge}
                 onChange={(e) =>
-                  setAge(e.target.value)
+                  setMAge(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
               />
 
               <select
-                value={gender}
+                value={mGender}
                 onChange={(e) =>
-                  setGender(e.target.value)
+                  setMGender(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
               >
@@ -414,121 +454,74 @@ const Tools = () => {
                 </option>
               </select>
 
+              <select
+                value={mActivity}
+                onChange={(e) =>
+                  setMActivity(
+                    e.target.value
+                  )
+                }
+                className={inputStyle}
+              >
+                {activityLevels.map(
+                  (item) => (
+                    <option
+                      key={item.value}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </option>
+                  )
+                )}
+              </select>
+
               <Button
                 type="submit"
                 className="w-full"
               >
                 Calculate Calories
               </Button>
+
             </form>
 
-            {calories && (
+            {maintenanceCalories && (
               <ResultCard
-                title="Daily Calories"
-                value={calories}
-                subtitle="kcal/day"
+                title="Maintenance Calories"
+                value={`${maintenanceCalories} kcal`}
+                subtitle="Calories needed daily to maintain your current weight"
               />
             )}
+
           </ToolCard>
 
-          {/* Water */}
+          {/* Goal Calories */}
           <ToolCard
             open={openTool === 2}
             setOpen={() =>
-              setOpenTool(openTool === 2 ? null : 2)
+              setOpenTool(
+                openTool === 2
+                  ? null
+                  : 2
+              )
             }
             {...tools[2]}
           >
+
             <form
-              onSubmit={calculateWater}
-              className="space-y-5"
+              onSubmit={
+                calculateGoalCalories
+              }
+              className="space-y-4"
             >
+
               <input
                 type="number"
                 placeholder="Weight (kg)"
-                value={waterWeight}
+                value={gWeight}
                 onChange={(e) =>
-                  setWaterWeight(e.target.value)
-                }
-                className={inputStyle}
-                required
-              />
-
-              <Button
-                type="submit"
-                className="w-full"
-              >
-                Calculate Water Intake
-              </Button>
-            </form>
-
-            {water && (
-              <ResultCard
-                title="Recommended Water"
-                value={`${water}L`}
-                subtitle="per day"
-              />
-            )}
-          </ToolCard>
-
-          {/* Protein */}
-          <ToolCard
-            open={openTool === 3}
-            setOpen={() =>
-              setOpenTool(openTool === 3 ? null : 3)
-            }
-            {...tools[3]}
-          >
-            <form
-              onSubmit={calculateProtein}
-              className="space-y-5"
-            >
-              <input
-                type="number"
-                placeholder="Weight (kg)"
-                value={proteinWeight}
-                onChange={(e) =>
-                  setProteinWeight(e.target.value)
-                }
-                className={inputStyle}
-                required
-              />
-
-              <Button
-                type="submit"
-                className="w-full"
-              >
-                Calculate Protein
-              </Button>
-            </form>
-
-            {protein && (
-              <ResultCard
-                title="Protein Intake"
-                value={`${protein}g`}
-                subtitle="recommended daily"
-              />
-            )}
-          </ToolCard>
-
-          {/* Body Fat */}
-          <ToolCard
-            open={openTool === 4}
-            setOpen={() =>
-              setOpenTool(openTool === 4 ? null : 4)
-            }
-            {...tools[4]}
-          >
-            <form
-              onSubmit={calculateBodyFat}
-              className="space-y-5"
-            >
-              <input
-                type="number"
-                placeholder="Weight (kg)"
-                value={fatWeight}
-                onChange={(e) =>
-                  setFatWeight(e.target.value)
+                  setGWeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
@@ -537,91 +530,118 @@ const Tools = () => {
               <input
                 type="number"
                 placeholder="Height (cm)"
-                value={fatHeight}
+                value={gHeight}
                 onChange={(e) =>
-                  setFatHeight(e.target.value)
+                  setGHeight(
+                    e.target.value
+                  )
                 }
                 className={inputStyle}
                 required
               />
 
+              <input
+                type="number"
+                placeholder="Age"
+                value={gAge}
+                onChange={(e) =>
+                  setGAge(
+                    e.target.value
+                  )
+                }
+                className={inputStyle}
+                required
+              />
+
+              <select
+                value={gGender}
+                onChange={(e) =>
+                  setGGender(
+                    e.target.value
+                  )
+                }
+                className={inputStyle}
+              >
+                <option value="male">
+                  Male
+                </option>
+
+                <option value="female">
+                  Female
+                </option>
+              </select>
+
+              <select
+                value={gActivity}
+                onChange={(e) =>
+                  setGActivity(
+                    e.target.value
+                  )
+                }
+                className={inputStyle}
+              >
+                {activityLevels.map(
+                  (item) => (
+                    <option
+                      key={item.value}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </option>
+                  )
+                )}
+              </select>
+
+              <select
+                value={goal}
+                onChange={(e) =>
+                  setGoal(
+                    e.target.value
+                  )
+                }
+                className={inputStyle}
+              >
+                <option value="cut">
+                  Fat Loss
+                </option>
+
+                <option value="bulk">
+                  Muscle Gain
+                </option>
+              </select>
+
               <Button
                 type="submit"
                 className="w-full"
               >
-                Estimate Body Fat
+                Calculate Goal Calories
               </Button>
+
             </form>
 
-            {bodyFat && (
+            {goalCalories && (
               <ResultCard
-                title="Estimated Body Fat"
-                value={`${bodyFat}%`}
-                subtitle="track your progress"
+                title={
+                  goal === 'cut'
+                    ? 'Fat Loss Calories'
+                    : 'Muscle Gain Calories'
+                }
+                value={`${goalCalories} kcal`}
+                subtitle={
+                  goal === 'cut'
+                    ? 'Recommended daily calories for fat loss'
+                    : 'Recommended daily calories for muscle gain'
+                }
               />
             )}
-          </ToolCard>
 
-          {/* Tips */}
-          <ToolCard
-            open={openTool === 5}
-            setOpen={() =>
-              setOpenTool(openTool === 5 ? null : 5)
-            }
-            {...tools[5]}
-          >
-            <div className="grid gap-5">
-
-              {[
-                {
-                  icon: HeartPulse,
-                  title: 'Recovery',
-                  desc: 'Sleep 7-8 hours daily for proper muscle recovery.',
-                },
-                {
-                  icon: Zap,
-                  title: 'Consistency',
-                  desc: 'Small consistent progress beats extreme workouts.',
-                },
-                {
-                  icon: Sparkles,
-                  title: 'Nutrition',
-                  desc: 'Protein + hydration = faster transformation.',
-                },
-              ].map((tip, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{
-                    scale: 1.02,
-                  }}
-                  className="rounded-3xl bg-white/[0.03] border border-white/10 p-6"
-                >
-                  <div className="flex items-start gap-5">
-
-                    <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                      <tip.icon className="w-7 h-7 text-orange-500" />
-                    </div>
-
-                    <div>
-                      <h4 className="text-white text-xl font-bold mb-2">
-                        {tip.title}
-                      </h4>
-
-                      <p className="text-neutral-400 leading-relaxed">
-                        {tip.desc}
-                      </p>
-                    </div>
-
-                  </div>
-                </motion.div>
-              ))}
-
-            </div>
           </ToolCard>
 
         </div>
+
       </div>
-    </motion.div>
+
+    </div>
   );
 };
 

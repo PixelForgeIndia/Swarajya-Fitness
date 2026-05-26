@@ -10,35 +10,132 @@ import { BRAND } from '../../data/brand';
 import Button from '../ui/Button';
 
 const Footer = ({ navigate }) => {
+
   const mapLink =
-    'https://maps.google.com/?q=Swarajya+Fitness+Club+Talegaon+Dabhade';
+    'https://www.google.com/maps/place/Swaraj+gym+Talegaon+Dabhade+R/data=!4m2!3m1!1s0x3bc2b1b8615ceb1d:0x51b194a239c29b45?sa=X&ved=1t:242&ictx=111';
 
   const whatsappLink =
     'https://wa.me/919762674241?text=Hi%20Swarajya%20Fitness%20Club,%20I%20want%20to%20know%20about%20membership%20details.';
 
+  // FIXED ROUTES
+
+  const footerLinks = [
+    {
+      label: 'Home',
+      page: '/',
+    },
+
+    {
+      label: 'About',
+      page: '/about',
+    },
+
+    {
+      label: 'Memberships',
+      page: '/memberships',
+    },
+
+    {
+      label: 'Gallery',
+      page: '/gallery',
+    },
+
+    {
+      label: 'Trainers',
+      page: '/trainers',
+    },
+
+    {
+      label: 'Tools',
+      page: '/tools',
+    },
+
+    {
+      label: 'Contact',
+      page: '/contact',
+    },
+  ];
+
+  // SAFE NAVIGATION
+
+  const handleNavigate = (page) => {
+
+    navigate(page);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+  };
+
   return (
-    <footer className="bg-[#080808] border-t border-white/10 pt-16 pb-24 md:pb-10">
+    <footer
+      className="
+        bg-[#080808]
+        border-t
+        border-white/10
+        pt-10
+        md:pt-12
+        pb-20
+        md:pb-8
+      "
+    >
 
       <div className="container mx-auto px-4 md:px-6">
 
         {/* CTA */}
-        <div className="mb-14 rounded-[28px] border border-orange-500/20 bg-[#111] p-6 md:p-8">
 
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div
+          className="
+            mb-10
+            rounded-[24px]
+            border
+            border-orange-500/20
+            bg-[#111]
+            p-5
+            md:p-6
+          "
+        >
+
+          <div
+            className="
+              flex
+              flex-col
+              lg:flex-row
+              items-start
+              lg:items-center
+              justify-between
+              gap-5
+            "
+          >
 
             <div>
 
               <h2 className="text-2xl md:text-3xl font-black text-white">
+
                 Ready To Transform Yourself?
+
               </h2>
 
-              <p className="text-neutral-400 mt-3 max-w-2xl">
-                Train with experienced coaches and real gym equipment in a motivating environment.
+              <p className="text-neutral-400 mt-2 max-w-2xl text-sm md:text-base">
+
+                Train with experienced coaches and professional gym equipment in a motivating environment.
+
               </p>
 
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+            <div
+              className="
+                flex
+                flex-col
+                sm:flex-row
+                gap-3
+                w-full
+                lg:w-auto
+              "
+            >
 
               <Button
                 onClick={() =>
@@ -47,14 +144,26 @@ const Footer = ({ navigate }) => {
                     '_blank'
                   )
                 }
-                className="!rounded-2xl !px-6 !py-3"
+                className="
+                  !rounded-2xl
+                  !px-5
+                  !py-3
+                  text-sm
+                "
               >
+
                 WhatsApp Us
+
               </Button>
 
               <Button
                 variant="outline"
-                className="!rounded-2xl !px-6 !py-3"
+                className="
+                  !rounded-2xl
+                  !px-5
+                  !py-3
+                  text-sm
+                "
                 onClick={() =>
                   window.open(
                     mapLink,
@@ -62,7 +171,9 @@ const Footer = ({ navigate }) => {
                   )
                 }
               >
+
                 Open Maps
+
               </Button>
 
             </div>
@@ -72,12 +183,24 @@ const Footer = ({ navigate }) => {
         </div>
 
         {/* MAIN GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-4
+            gap-8
+            mb-8
+          "
+        >
 
           {/* BRAND */}
+
           <div>
 
-            <h2 className="text-3xl font-black uppercase tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight">
+
               <span className="text-white">
                 Swarajya
               </span>{' '}
@@ -85,22 +208,48 @@ const Footer = ({ navigate }) => {
               <span className="text-orange-500">
                 Fitness
               </span>
+
             </h2>
 
-            <p className="text-neutral-400 text-sm leading-relaxed mt-4">
-              Real fitness training environment focused on discipline, transformation and long-term results.
+            <p className="text-neutral-400 text-sm leading-relaxed mt-3">
+
+              Real fitness training environment focused on discipline,
+              transformation and long-term fitness results.
+
             </p>
 
             <a
               href="tel:9762674241"
-              className="flex items-center gap-3 mt-6 text-white hover:text-orange-500 transition-all"
+              className="
+                flex
+                items-center
+                gap-3
+                mt-5
+                text-white
+                hover:text-orange-500
+                transition-all
+              "
             >
 
-              <div className="w-11 h-11 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                <PhoneCall className="w-5 h-5 text-orange-500" />
+              <div
+                className="
+                  w-10
+                  h-10
+                  rounded-xl
+                  bg-orange-500/10
+                  border
+                  border-orange-500/20
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+
+                <PhoneCall className="w-4 h-4 text-orange-500" />
+
               </div>
 
-              <span className="font-medium">
+              <span className="text-sm font-medium">
                 +91 9762674241
               </span>
 
@@ -108,34 +257,44 @@ const Footer = ({ navigate }) => {
 
           </div>
 
-          {/* LINKS */}
+          {/* QUICK LINKS */}
+
           <div>
 
-            <h4 className="text-white font-bold uppercase tracking-[2px] text-sm mb-5">
+            <h4
+              className="
+                text-white
+                font-bold
+                uppercase
+                tracking-[2px]
+                text-xs
+                mb-4
+              "
+            >
+
               Quick Links
+
             </h4>
 
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="grid grid-cols-2 gap-y-2 text-sm">
 
-              {[
-                'Home',
-                'About',
-                'Memberships',
-                'Gallery',
-                'Trainers',
-                'Tools',
-                'Contact',
-              ].map((item) => (
+              {footerLinks.map((item) => (
+
                 <button
-                  key={item}
+                  key={item.label}
                   onClick={() =>
-                    navigate(
-                      item.toLowerCase()
-                    )
+                    handleNavigate(item.page)
                   }
-                  className="text-left text-neutral-400 hover:text-orange-500 transition-all"
+                  className="
+                    text-left
+                    text-neutral-400
+                    hover:text-orange-500
+                    transition-all
+                  "
                 >
-                  {item}
+
+                  {item.label}
+
                 </button>
               ))}
 
@@ -143,20 +302,48 @@ const Footer = ({ navigate }) => {
 
           </div>
 
-          {/* TIMINGS + TRAINERS */}
+          {/* GYM INFO */}
+
           <div>
 
-            <h4 className="text-white font-bold uppercase tracking-[2px] text-sm mb-5">
+            <h4
+              className="
+                text-white
+                font-bold
+                uppercase
+                tracking-[2px]
+                text-xs
+                mb-4
+              "
+            >
+
               Gym Info
+
             </h4>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
 
               {/* MORNING */}
+
               <div className="flex items-start gap-3">
 
-                <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0">
+                <div
+                  className="
+                    w-9
+                    h-9
+                    rounded-xl
+                    bg-orange-500/10
+                    border
+                    border-orange-500/20
+                    flex
+                    items-center
+                    justify-center
+                    shrink-0
+                  "
+                >
+
                   <Clock3 className="w-4 h-4 text-orange-500" />
+
                 </div>
 
                 <div>
@@ -174,10 +361,26 @@ const Footer = ({ navigate }) => {
               </div>
 
               {/* EVENING */}
+
               <div className="flex items-start gap-3">
 
-                <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0">
+                <div
+                  className="
+                    w-9
+                    h-9
+                    rounded-xl
+                    bg-orange-500/10
+                    border
+                    border-orange-500/20
+                    flex
+                    items-center
+                    justify-center
+                    shrink-0
+                  "
+                >
+
                   <Clock3 className="w-4 h-4 text-orange-500" />
+
                 </div>
 
                 <div>
@@ -195,10 +398,26 @@ const Footer = ({ navigate }) => {
               </div>
 
               {/* TRAINERS */}
+
               <div className="flex items-start gap-3">
 
-                <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0">
+                <div
+                  className="
+                    w-9
+                    h-9
+                    rounded-xl
+                    bg-orange-500/10
+                    border
+                    border-orange-500/20
+                    flex
+                    items-center
+                    justify-center
+                    shrink-0
+                  "
+                >
+
                   <User2 className="w-4 h-4 text-orange-500" />
+
                 </div>
 
                 <div>
@@ -223,41 +442,86 @@ const Footer = ({ navigate }) => {
 
           </div>
 
-          {/* MAP */}
+          {/* LOCATION */}
+
           <div>
 
-            <h4 className="text-white font-bold uppercase tracking-[2px] text-sm mb-5">
+            <h4
+              className="
+                text-white
+                font-bold
+                uppercase
+                tracking-[2px]
+                text-xs
+                mb-4
+              "
+            >
+
               Location
+
             </h4>
 
-            <div className="rounded-3xl overflow-hidden border border-white/10 bg-[#111]">
+            <div
+              className="
+                rounded-2xl
+                overflow-hidden
+                border
+                border-white/10
+                bg-[#111]
+              "
+            >
 
               {/* SMALL MAP */}
+
               <iframe
                 title="Swarajya Fitness Location"
-                src="https://www.google.com/maps?q=Talegaon+Dabhade+Maharashtra&output=embed"
+                src="https://www.google.com/maps?q=Swaraj+gym+Talegaon+Dabhade&output=embed"
                 width="100%"
-                height="170"
+                height="120"
                 loading="lazy"
                 className="border-0"
               />
 
-              <div className="p-4">
+              <div className="p-3">
 
                 <div className="flex items-start gap-3">
 
-                  <div className="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0">
+                  <div
+                    className="
+                      w-8
+                      h-8
+                      rounded-lg
+                      bg-orange-500/10
+                      border
+                      border-orange-500/20
+                      flex
+                      items-center
+                      justify-center
+                      shrink-0
+                    "
+                  >
+
                     <MapPin className="w-4 h-4 text-orange-500" />
+
                   </div>
 
-                  <p className="text-neutral-400 text-xs leading-relaxed">
-                    Behind Post Office, Opposite Shankar Mandir Temple, Yashwant Nagar, Talegaon Dabhade Station
+                  <p className="text-neutral-400 text-[11px] leading-relaxed">
+
+                    Swaraj Gym, Talegaon Dabhade,
+                    Maharashtra, India.
+
                   </p>
 
                 </div>
 
                 <Button
-                  className="w-full !rounded-2xl !py-3 mt-4 text-sm"
+                  className="
+                    w-full
+                    !rounded-xl
+                    !py-2.5
+                    mt-3
+                    text-sm
+                  "
                   onClick={() =>
                     window.open(
                       mapLink,
@@ -287,10 +551,20 @@ const Footer = ({ navigate }) => {
         </div>
 
         {/* BOTTOM */}
-        <div className="border-t border-white/10 pt-6 text-center">
 
-          <p className="text-neutral-500 text-sm">
+        <div
+          className="
+            border-t
+            border-white/10
+            pt-5
+            text-center
+          "
+        >
+
+          <p className="text-neutral-500 text-xs md:text-sm">
+
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+
           </p>
 
         </div>

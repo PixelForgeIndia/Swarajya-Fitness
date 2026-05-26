@@ -17,7 +17,8 @@ const Footer = ({ navigate }) => {
   const whatsappLink =
     'https://wa.me/919762674241?text=Hi%20Swarajya%20Fitness%20Club,%20I%20want%20to%20know%20about%20membership%20details.';
 
-  // FIXED ROUTES
+  const agencyLink =
+    'https://pixelforgeindia.vercel.app';
 
   const footerLinks = [
     {
@@ -55,8 +56,6 @@ const Footer = ({ navigate }) => {
       page: '/contact',
     },
   ];
-
-  // SAFE NAVIGATION
 
   const handleNavigate = (page) => {
 
@@ -323,8 +322,6 @@ const Footer = ({ navigate }) => {
 
             <div className="space-y-4">
 
-              {/* MORNING */}
-
               <div className="flex items-start gap-3">
 
                 <div
@@ -360,8 +357,6 @@ const Footer = ({ navigate }) => {
 
               </div>
 
-              {/* EVENING */}
-
               <div className="flex items-start gap-3">
 
                 <div
@@ -396,8 +391,6 @@ const Footer = ({ navigate }) => {
                 </div>
 
               </div>
-
-              {/* TRAINERS */}
 
               <div className="flex items-start gap-3">
 
@@ -470,8 +463,6 @@ const Footer = ({ navigate }) => {
                 bg-[#111]
               "
             >
-
-              {/* SMALL MAP */}
 
               <iframe
                 title="Swarajya Fitness Location"
@@ -550,13 +541,18 @@ const Footer = ({ navigate }) => {
 
         </div>
 
-        {/* BOTTOM */}
+        {/* FOOTER BOTTOM */}
 
         <div
           className="
             border-t
             border-white/10
             pt-5
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-2
             text-center
           "
         >
@@ -564,6 +560,39 @@ const Footer = ({ navigate }) => {
           <p className="text-neutral-500 text-xs md:text-sm">
 
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+
+          </p>
+
+          <p
+            className="
+              text-[11px]
+              md:text-xs
+              text-neutral-500
+              tracking-wide
+            "
+          >
+
+            Designed & Developed by{' '}
+
+            <a
+              href={agencyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                font-medium
+                text-neutral-300
+                transition-all
+                duration-300
+                hover:text-cyan-300
+                hover:underline
+                hover:underline-offset-4
+                hover:decoration-cyan-400/60
+              "
+            >
+
+              PixelForge India
+
+            </a>
 
           </p>
 

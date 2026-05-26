@@ -20,6 +20,8 @@ const Footer = ({ navigate }) => {
   const agencyLink =
     'https://pixelforgeindia.vercel.app';
 
+  // FIXED ROUTES
+
   const footerLinks = [
     {
       label: 'Home',
@@ -56,6 +58,8 @@ const Footer = ({ navigate }) => {
       page: '/contact',
     },
   ];
+
+  // SAFE NAVIGATION
 
   const handleNavigate = (page) => {
 
@@ -190,7 +194,7 @@ const Footer = ({ navigate }) => {
             sm:grid-cols-2
             lg:grid-cols-4
             gap-8
-            mb-8
+            mb-10
           "
         >
 
@@ -322,6 +326,8 @@ const Footer = ({ navigate }) => {
 
             <div className="space-y-4">
 
+              {/* MORNING */}
+
               <div className="flex items-start gap-3">
 
                 <div
@@ -357,6 +363,8 @@ const Footer = ({ navigate }) => {
 
               </div>
 
+              {/* EVENING */}
+
               <div className="flex items-start gap-3">
 
                 <div
@@ -391,6 +399,8 @@ const Footer = ({ navigate }) => {
                 </div>
 
               </div>
+
+              {/* TRAINERS */}
 
               <div className="flex items-start gap-3">
 
@@ -541,18 +551,136 @@ const Footer = ({ navigate }) => {
 
         </div>
 
-        {/* FOOTER BOTTOM */}
+        {/* PIXELFORGE AGENCY CREDIT */}
+
+        <a
+          href={agencyLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            group
+            relative
+            block
+            overflow-hidden
+            rounded-[28px]
+            border
+            border-cyan-500/20
+            bg-gradient-to-br
+            from-cyan-500/[0.08]
+            via-[#111]
+            to-[#0a0a0a]
+            p-6
+            md:p-7
+            mb-8
+            transition-all
+            duration-500
+            hover:border-cyan-400/50
+            hover:shadow-[0_0_50px_rgba(34,211,238,0.12)]
+          "
+        >
+
+          <div
+            className="
+              absolute
+              inset-0
+              opacity-0
+              group-hover:opacity-100
+              transition-opacity
+              duration-500
+              bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.10),transparent_60%)]
+            "
+          />
+
+          <div className="relative z-10 text-center">
+
+            <p
+              className="
+                text-[10px]
+                md:text-xs
+                uppercase
+                tracking-[4px]
+                text-cyan-400/70
+                font-semibold
+                mb-3
+              "
+            >
+
+              Official Website Partner
+
+            </p>
+
+            <h3
+              className="
+                text-xl
+                md:text-2xl
+                font-bold
+                text-white
+                leading-tight
+                transition-all
+                duration-300
+                group-hover:text-cyan-300
+              "
+            >
+
+              Designed & Developed by PixelForge India
+
+            </h3>
+
+            <p
+              className="
+                text-sm
+                md:text-base
+                text-neutral-400
+                mt-3
+                max-w-2xl
+                mx-auto
+                leading-relaxed
+              "
+            >
+
+              Need a premium website for your business, gym, clinic,
+              restaurant, brand or startup?
+
+            </p>
+
+            <div
+              className="
+                inline-flex
+                items-center
+                justify-center
+                mt-5
+                px-5
+                py-2.5
+                rounded-full
+                border
+                border-cyan-400/20
+                bg-cyan-400/5
+                text-cyan-300
+                text-sm
+                font-medium
+                tracking-wide
+                transition-all
+                duration-300
+                group-hover:border-cyan-300/40
+                group-hover:bg-cyan-400/10
+              "
+            >
+
+              Visit PixelForge India →
+
+            </div>
+
+          </div>
+
+        </a>
+
+        {/* COPYRIGHT */}
 
         <div
           className="
             border-t
             border-white/10
             pt-5
-            flex
-            flex-col
-            items-center
-            justify-center
-            gap-2
             text-center
           "
         >
@@ -560,39 +688,6 @@ const Footer = ({ navigate }) => {
           <p className="text-neutral-500 text-xs md:text-sm">
 
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
-
-          </p>
-
-          <p
-            className="
-              text-[11px]
-              md:text-xs
-              text-neutral-500
-              tracking-wide
-            "
-          >
-
-            Designed & Developed by{' '}
-
-            <a
-              href={agencyLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                font-medium
-                text-neutral-300
-                transition-all
-                duration-300
-                hover:text-cyan-300
-                hover:underline
-                hover:underline-offset-4
-                hover:decoration-cyan-400/60
-              "
-            >
-
-              PixelForge India
-
-            </a>
 
           </p>
 
